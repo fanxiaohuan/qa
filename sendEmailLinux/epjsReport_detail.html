@@ -1,0 +1,929 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta content="shanhe.me" name="Author"><title>JMeter Test Results</title><style type="text/css">
+            
+                * { margin: 0; padding: 0 }
+                html, body { width: 100%; height: 100%; background: #b4b4b4; font-size: 12px }
+                table { border: none; border-collapse: collapse; table-layout: fixed }
+                td { vertical-align: baseline; font-size: 12px }
+                #left-panel { position: absolute; left: 0; top: 0; bottom: 0; width: 300px; overflow: auto; background: #dee4ea }
+                #left-panel li.navigation { font-weight: bold; cursor: default; color: #9da8b2; line-height: 18px; background-position: 12px 5px; background-repeat: no-repeat; padding: 0 0 0 25px; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAICAYAAAArzdW1AAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBQqGbO7BEcAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAKRJREFUGNN1zM0KgkAYheF3RvtXSsGyWhRNaILS7bdt11W0KgJvoPwZp0UlBPUtz3nOJw7Hk7necv5dOA2Qaazo2vZP0LEt9olCVtqQROufKNmuqBuBNAYW4QzXGX6B0bDPcjGnMQYJ8Cg12U59oSzaUJQa4IUAXMclDHwAAn/MxPMw765FZd2QRgopBWmsKCrdfhXnS/4ZYElBXdyxewN008Y8AephLAkqz613AAAAAElFTkSuQmCC) }
+                #left-panel li.success { color: #565b60 }
+                #left-panel li.failure { color: red }
+                #left-panel li { list-style: none; color: black; cursor: pointer }
+                #left-panel li.selected { background-repeat: repeat-x; color: white; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAUCAYAAABMDlehAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBQxLTs5O2gAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAEdJREFUCNc1y7ERgEAMA0GNUhIyGqM2uqKgtyWZhE9v53A/7/A6D7BkMDNgy2AroB2wHTCZv5UMOgFLG1bvd7XBckBlwCXjA5wMOF5iOX/MAAAAAElFTkSuQmCC) }
+                #left-panel div { line-height: 20px; background-position: 25px 3px; background-repeat: no-repeat; padding: 0 0 0 45px }
+                #left-panel div.success { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBULEEc6wzcAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAiNJREFUKM99kktIVGEYhp/jzJl08lI6logp2Y2EFkbtaqlFROsWrlq4ioJWQRs37VoUVItWkYEVRGSBlhleCpywDEWxTEuxcURTZ6YzxzP/5WshCOHUt36f93kXnyMi5Lsnb4clI4s4fhkXzp5w8mWcfHBvfEpUxVdCUUU6lUPNHuD86cYtBQX5GhPrM7hRg7GaSDRg2vuUd90WuOPVsOyqy6FFo2yOQHlU1S9z9dZT+S/8I7GCLlkAN4eyAf56mnT6Fy1HLnGuuYa++MS/4e74qMRqfXLaJ9BpfnsrLC0m2BYuoqwUbj/+274JD43OEqmexwvW8NUKXnaZtVSS1pNtAAyOvyC6v48HnUNb4Z7PH8UtTlIQWA5tb2RhYY7kz3l2FleytJYg/qWb8t2KZ/0PN+1hgI6uEUr2jpHKpGlquExVaS0VbjUZL7WxaqIXK6ADQ0n9GNfv9XCttWnD/O57t0TKFklnF3g5fJ/seoaa2D4O1x0F4PlgO9oIftbgFgYMfLgjACGqj0vlsddoUnj+Kt/mxunq72RP+UGqYjWMTA7R+b6dUCSEGEF5hoJQip6BaFs4HJtCyRrKs6wHCovDip/kys0WWpovMpOYBCtoT2N9B5uzWG0Zid8gnFrVFEQDtBaUrxEgXBimaEeER2/uIiK4roPOaMRYjBKsFly3fOO3G06dETGCWIsYjckprMphtEKMAQtgsMYi1mJMQHJ6xvkDKQoyphCzkl0AAAAASUVORK5CYII=) }
+                #left-panel div.failure { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBUJOEC5CU8AAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAeVJREFUKM+NkDtok2EUhp8vl9ZLo/EyKI6KFgqCKC4OClrBWUQEcRRx1cGpk3WyInWrgoMZKkW8thYaEYQ0i7WC2ngrNDTERHJvkv/L/3//dxwc7F8jeOAsh/c973OOEhG61aPnaen7maXYt4MLZ4+pbppQt+F06jNH3QWOb8pxUs+SmJzjv83hxY8SVy3wNdtVneiHqe54IhLoB4/TUkyMyOrKj5yXoVtPZK02kLyYK7OnlqFWzgcCGtUC/YUJ3n5a/jd28tU7ORTN0myUA6Jms8bpWIa798elqzn1fokjThrpVBC3ETzNbYAuca59j/Hp+b/N869Tsk8tgVMCXQk+RlfQuk1/tMLMwzsSMCcm5zjhvoR2AdpF0GuwO4aqttS05ZSbZHhsBoAIwI83Cdkd/460XDAOG02d24MxvlR8dsUUh3f2UHaEtgdbWCHz4oZwcVCp66PP5FLhKjEc8DXaCMsNy8DYn/SnZ+L0hhWOb/F8yLs9fDtwk8j+VpqwrlC34PrgGEu2bhlYhZ1b8dncq3AMeBaUr/k6NUyk4ChKzu+N2hc6Bqody+WDG8g2fLatD7F3axjPgmvAtYJvIbouhhIRrl0ZktnkBGIt1gqeMXQ8D2MMiCIUCqFEsFhEQMSykCuqX0MzLAUJTzRsAAAAAElFTkSuQmCC) }
+                #left-panel div.detail { display: none }
+                #right-panel { position: absolute; right: 0; top: 0; bottom: 0; left: 301px; overflow: auto; background: white }
+                #right-panel .group { font-size: 12px; font-weight: bold; line-height: 16px; padding: 0 0 0 18px; counter-reset: assertion; background-repeat: repeat-x; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAQCAYAAADXnxW3AAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBUkDq8pxjkAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAADdJREFUCNdVxrERwDAMAzGK0v47eS6Z927SpMFBAAbkvSvnRk5+7K5cVfLMyN39bWakJAjA5xw9R94jN3tVhVEAAAAASUVORK5CYII=) }
+                #right-panel .zebra { background-repeat: repeat; padding: 0 0 0 18px; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAmCAYAAAAFvPEHAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sDEBYWFlNztEcAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAABdJREFUCNdjYKAtePv5338mBgYGBpoQAGy1BAJlb/y6AAAAAElFTkSuQmCC) }
+                #right-panel .data { line-height: 19px; white-space: initial }
+                #right-panel pre.data { white-space: pre }
+                #right-panel tbody.failure { color: red }
+                #right-panel td.key { min-width: 108px }
+                #right-panel td.delimiter { min-width: 18px }
+                #right-panel td.assertion:before { counter-increment: assertion; content: counter(assertion) ". " }
+                #right-panel td.assertion { color: black }
+                #right-panel .trail { border-top: 1px solid #b4b4b4 }
+
+
+                
+            </style><script type="text/javascript">
+            
+                var onclick_li = (function() {
+                    var last_selected = null;
+                    return function(li) {
+                        if( last_selected == li )
+                            return;
+                        if( last_selected )
+                            last_selected.className = "";
+                        last_selected = li;
+                        last_selected.className = "selected";
+                        document.getElementById("right-panel").innerHTML = last_selected.firstChild.nextSibling.innerHTML;
+                        return false;
+                    };
+                })();
+                
+                var patch_timestamp = function() {
+                    var spans = document.getElementsByTagName("span");
+                    var len = spans.length;
+                    for( var i = 0; i < len; ++i ) {
+                        var span = spans[i];
+                        if( "patch_timestamp" == span.className )
+                            span.innerHTML = new Date( parseInt( span.innerHTML ) );
+                    }
+                };
+                
+                var patch_navigation_class = (function() {
+                
+                    var set_class = function(el, flag) {
+                        if(el) {
+                            el.className += flag ? " success" : " failure";
+                        }
+                    };
+                
+                    var traverse = function(el, group_el, flag) {
+                        while(1) {
+                            if(el) {
+                                if(el.className == 'navigation') {
+                                    set_class(group_el, flag);
+                                    group_el = el;
+                                    flag = true;
+                                } else {
+                                    var o = el.firstChild;
+                                    o = o ? o.className : null;
+                                    flag = flag ? (o == 'success') : false;
+                                }
+                                el = el.nextSibling;
+                            } else {
+                                set_class(group_el, flag);
+                                break;
+                            }
+                        }
+                    };
+                    
+                    return function() {
+                        var o = document.getElementById("result-list");
+                        o = o ? o.firstChild : null;
+                        if(o)
+                            traverse(o, null, true);
+                    };
+                })();
+        
+                window.onload = function() {
+                    patch_timestamp();
+                    patch_navigation_class();
+                    var o = document.getElementById("result-list");
+                    o = o ? o.firstChild : null;
+                    o = o ? o.nextSibling : null;
+                    if(o)
+                        onclick_li(o);
+                };
+        
+            </script></head><body><div id="left-panel"><ol id="result-list"><li class="navigation">Thread: 客户登录 1-1</li><li onclick="return onclick_li(this);"><div class="failure">获取图形验证码</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">客户登录 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585623914668</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">30063 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">30049 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">859</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">500</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Internal Server Error</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0,/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://mall.dev.yinongt.com/ynt-rest/v2/captcha/base64</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: close
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+Content-Length: 155
+Host: mall.dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 500 Internal Server Error
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:05:43 GMT
+Content-Type: application/json;charset=UTF-8
+Content-Length: 179
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">{"timestamp":"2020-03-31T03:05:43.949+0000","path":"/ynt-rest/v2/captcha/base64","status":500,"error":"Internal Server Error","message":"connection timed out: /192.168.0.10:8083"}</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">获取数字验证码</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">客户登录 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585623944739</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">30016 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">30016 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">860</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">500</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Internal Server Error</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://mall.dev.yinongt.com/ynt-rest/v2/captcha/number</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: close
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+Content-Length: 174
+Host: mall.dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 500 Internal Server Error
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:13 GMT
+Content-Type: application/json;charset=UTF-8
+Content-Length: 179
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">{"timestamp":"2020-03-31T03:06:13.992+0000","path":"/ynt-rest/v2/captcha/number","status":500,"error":"Internal Server Error","message":"connection timed out: /192.168.0.10:8083"}</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">进行注册</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">客户登录 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585623974757</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">30019 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">30018 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">854</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">500</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Internal Server Error</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://mall.dev.yinongt.com/ynt-rest/v2/register</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: close
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+Content-Length: 185
+Host: mall.dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 500 Internal Server Error
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:44 GMT
+Content-Type: application/json;charset=UTF-8
+Content-Length: 173
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">{"timestamp":"2020-03-31T03:06:44.012+0000","path":"/ynt-rest/v2/register","status":500,"error":"Internal Server Error","message":"connection timed out: /192.168.0.10:8083"}</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li class="navigation">Thread: nuth 1-1</li><li onclick="return onclick_li(this);"><div class="failure">banner栏</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">nuth 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007508</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">52 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">49 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">879</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/no_auth/banner/list?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=1</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:46 GMT
+Content-Type: text/html
+Content-Length: 727
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/no_auth/banner/list?versionCode=31&amp;amp;versionName=1.5.0&amp;amp;osType=1&amp;amp;model=HRY-AL00Ta&amp;amp;brand=HONOR&amp;amp;osVerison=10&amp;amp;androidId=06b01d1074a55f15&amp;amp;utype=1&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:46&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">供货</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">nuth 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007569</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">20 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">6 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1401</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/no_auth/supply/page?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=Mi+Note+3&amp;brand=Xiaomi&amp;osVerison=8.1.0&amp;androidId=dcca221693144a77&amp;utype=1&amp;pagesize=5&amp;current=1</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:46 GMT
+Content-Type: text/html
+Content-Length: 759
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/no_auth/supply/page?versionCode=31&amp;amp;versionName=1.5.0&amp;amp;osType=1&amp;amp;model=Mi+Note+3&amp;amp;brand=Xiaomi&amp;amp;osVerison=8.1.0&amp;amp;androidId=dcca221693144a77&amp;amp;utype=1&amp;amp;pagesize=5&amp;amp;current=1&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:46&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">供货详情</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">nuth 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007592</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1242</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">Non HTTP response code: java.net.URISyntaxException</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Non HTTP response message: Illegal character in path at index 39: http://dev.yinongt.com/no_auth/supply/${id}?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=1</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/no_auth/supply/${id}?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=1</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">java.net.URISyntaxException: Illegal character in path at index 39: http://dev.yinongt.com/no_auth/supply/${id}?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=1&#13;
+	at java.net.URI$Parser.fail(URI.java:2848)&#13;
+	at java.net.URI$Parser.checkChars(URI.java:3021)&#13;
+	at java.net.URI$Parser.parseHierarchical(URI.java:3105)&#13;
+	at java.net.URI$Parser.parse(URI.java:3053)&#13;
+	at java.net.URI.&lt;init&gt;(URI.java:588)&#13;
+	at java.net.URL.toURI(URL.java:963)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:535)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:67)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1282)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1271)&#13;
+	at org.apache.jmeter.threads.JMeterThread.doSampling(JMeterThread.java:627)&#13;
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:551)&#13;
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:490)&#13;
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)&#13;
+	at java.lang.Thread.run(Thread.java:748)&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">采购接口</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">nuth 1-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007594</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">5 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">5 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">928</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/no_auth/purchase/page?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=1&amp;pagesize=5&amp;current=1&amp;sort=editTime</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:46 GMT
+Content-Type: text/html
+Content-Length: 776
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/no_auth/purchase/page?versionCode=31&amp;amp;versionName=1.5.0&amp;amp;osType=1&amp;amp;model=HRY-AL00Ta&amp;amp;brand=HONOR&amp;amp;osVerison=10&amp;amp;androidId=06b01d1074a55f15&amp;amp;utype=1&amp;amp;pagesize=5&amp;amp;current=1&amp;amp;sort=editTime&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:46&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li class="navigation">Thread: 农户-登录 2-1</li><li onclick="return onclick_li(this);"><div class="failure">app登录成功</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">农户-登录 2-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007604</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">12 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">11 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1217</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"msg":"登录成功/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/login</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: close
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+Content-Length: 191
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:46 GMT
+Content-Type: text/html
+Content-Length: 566
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/login&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:46&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">app-农户消息</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">农户-登录 2-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007617</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">9 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">9 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">740</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/peasantMessage/isNewMessage</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: close
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+Content-Length: 129
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:46 GMT
+Content-Type: text/html
+Content-Length: 588
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/peasantMessage/isNewMessage&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:46&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">app-是否有新邀请</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">农户-登录 2-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007627</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">11 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">11 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">739</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected something using /"code":1/	Test failed: text expected something using /"code":0/	</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/invitation/isNewInvitation</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: close
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+Content-Length: 129
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:46 GMT
+Content-Type: text/html
+Content-Length: 587
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/invitation/isNewInvitation&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:46&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">农户-我的供货查询</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">农户-登录 2-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007642</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1259</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">Non HTTP response code: java.net.URISyntaxException</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Non HTTP response message: Illegal character in query at index 172: http://dev.yinongt.com/supply?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=1&amp;size=10&amp;current=1&amp;uid=${uid}</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/supply?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=1&amp;size=10&amp;current=1&amp;uid=${uid}</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">java.net.URISyntaxException: Illegal character in query at index 172: http://dev.yinongt.com/supply?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=1&amp;size=10&amp;current=1&amp;uid=${uid}&#13;
+	at java.net.URI$Parser.fail(URI.java:2848)&#13;
+	at java.net.URI$Parser.checkChars(URI.java:3021)&#13;
+	at java.net.URI$Parser.parseHierarchical(URI.java:3111)&#13;
+	at java.net.URI$Parser.parse(URI.java:3053)&#13;
+	at java.net.URI.&lt;init&gt;(URI.java:588)&#13;
+	at java.net.URL.toURI(URL.java:963)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:535)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:67)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1282)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1271)&#13;
+	at org.apache.jmeter.threads.JMeterThread.doSampling(JMeterThread.java:627)&#13;
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:551)&#13;
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:490)&#13;
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)&#13;
+	at java.lang.Thread.run(Thread.java:748)&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">app-账户信息</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">农户-登录 2-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007643</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">10 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">10 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">741</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/accountInfo/platformUserInfo</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: close
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+Content-Length: 129
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:46 GMT
+Content-Type: text/html
+Content-Length: 589
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/accountInfo/platformUserInfo&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:46&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">x-www-form-urlencode 类型接口</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">农户-登录 2-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007603</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">51 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">41 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">4696</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data"></td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Number of samples in transaction : 5, number of failing samples : 5</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">Non-TEXT response data, cannot record: ()</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">反馈建议接口</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">农户-登录 2-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007654</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">11 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">11 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">721</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/feedback</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: keep-alive
+Content-Type: multipart/form-data; boundary=a5c971d2-fe14-41c0-a81a-2faba69dceba
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+User_agent: okhttp-okgo/jeasonlzy
+Content-Length: 154
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:46 GMT
+Content-Type: text/html
+Content-Length: 569
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/feedback&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:46&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">multipart/form-data 类型接口</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">农户-登录 2-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007654</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">11 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">11 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">721</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data"></td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Number of samples in transaction : 1, number of failing samples : 1</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">Non-TEXT response data, cannot record: ()</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li class="navigation">Thread: 采购商-登录 3-1</li><li onclick="return onclick_li(this);"><div class="failure">app登录成功</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007674</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">11 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">10 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1221</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"msg":"登录成功/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/login</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: close
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+Content-Length: 191
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:46 GMT
+Content-Type: text/html
+Content-Length: 566
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/login&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:46&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">app-农户消息</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007686</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">10 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">10 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">740</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected something using /"code":1/	Test failed: text expected something using /"code":0/	</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/peasantMessage/isNewMessage</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: close
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+Content-Length: 129
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:46 GMT
+Content-Type: text/html
+Content-Length: 588
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/peasantMessage/isNewMessage&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:46&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">app-账户信息</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007697</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">8 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">7 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">741</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/accountInfo/platformUserInfo</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: close
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+Content-Length: 129
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:46 GMT
+Content-Type: text/html
+Content-Length: 589
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/accountInfo/platformUserInfo&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:46&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">app-是否有新邀请</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007706</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">9 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">9 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">739</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":1/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/invitation/isNewInvitation</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: close
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+Content-Length: 129
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:46 GMT
+Content-Type: text/html
+Content-Length: 587
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/invitation/isNewInvitation&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:46&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">查询产品类型</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007716</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1774</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">Non HTTP response code: java.net.URISyntaxException</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Non HTTP response message: Illegal character in query at index 172: http://dev.yinongt.com/no_auth/produceType/list?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;uid=${uid}</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/no_auth/produceType/list?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;uid=${uid}</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">java.net.URISyntaxException: Illegal character in query at index 172: http://dev.yinongt.com/no_auth/produceType/list?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;uid=${uid}&#13;
+	at java.net.URI$Parser.fail(URI.java:2848)&#13;
+	at java.net.URI$Parser.checkChars(URI.java:3021)&#13;
+	at java.net.URI$Parser.parseHierarchical(URI.java:3111)&#13;
+	at java.net.URI$Parser.parse(URI.java:3053)&#13;
+	at java.net.URI.&lt;init&gt;(URI.java:588)&#13;
+	at java.net.URL.toURI(URL.java:963)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:535)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:67)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1282)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1271)&#13;
+	at org.apache.jmeter.threads.JMeterThread.doSampling(JMeterThread.java:627)&#13;
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:551)&#13;
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:490)&#13;
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)&#13;
+	at java.lang.Thread.run(Thread.java:748)&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">我的产品规格</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007717</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">1 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1812</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">Non HTTP response code: java.net.URISyntaxException</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Non HTTP response message: Illegal character in query at index 181: http://dev.yinongt.com/no_auth/produceSpecification/list?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;uid=${uid}&amp;produceTypeId=</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/no_auth/produceSpecification/list?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;uid=${uid}&amp;produceTypeId=</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">java.net.URISyntaxException: Illegal character in query at index 181: http://dev.yinongt.com/no_auth/produceSpecification/list?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;uid=${uid}&amp;produceTypeId=&#13;
+	at java.net.URI$Parser.fail(URI.java:2848)&#13;
+	at java.net.URI$Parser.checkChars(URI.java:3021)&#13;
+	at java.net.URI$Parser.parseHierarchical(URI.java:3111)&#13;
+	at java.net.URI$Parser.parse(URI.java:3053)&#13;
+	at java.net.URI.&lt;init&gt;(URI.java:588)&#13;
+	at java.net.URL.toURI(URL.java:963)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:535)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:67)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1282)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1271)&#13;
+	at org.apache.jmeter.threads.JMeterThread.doSampling(JMeterThread.java:627)&#13;
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:551)&#13;
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:490)&#13;
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)&#13;
+	at java.lang.Thread.run(Thread.java:748)&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">查询产品规格属性</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007719</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">39 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">2090</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">Non HTTP response code: java.net.URISyntaxException</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Non HTTP response message: Illegal character in query at index 204: http://dev.yinongt.com/no_auth/produceSpecification/detailList?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;specificationId=&amp;uid=${uid}</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/no_auth/produceSpecification/detailList?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;specificationId=&amp;uid=${uid}</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">java.net.URISyntaxException: Illegal character in query at index 204: http://dev.yinongt.com/no_auth/produceSpecification/detailList?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;specificationId=&amp;uid=${uid}&#13;
+	at java.net.URI$Parser.fail(URI.java:2848)&#13;
+	at java.net.URI$Parser.checkChars(URI.java:3021)&#13;
+	at java.net.URI$Parser.parseHierarchical(URI.java:3111)&#13;
+	at java.net.URI$Parser.parse(URI.java:3053)&#13;
+	at java.net.URI.&lt;init&gt;(URI.java:588)&#13;
+	at java.net.URL.toURI(URL.java:963)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:535)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:67)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1282)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1271)&#13;
+	at org.apache.jmeter.threads.JMeterThread.doSampling(JMeterThread.java:627)&#13;
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:551)&#13;
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:490)&#13;
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)&#13;
+	at java.lang.Thread.run(Thread.java:748)&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">发布采购需求</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624007759</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">316 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">316 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">726</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/purchase/save</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+Content-Length: 1223
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:47 GMT
+Content-Type: text/html
+Content-Length: 574
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/purchase/save&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:47&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">采购商应支付金额</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624008076</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">6 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">5 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1548</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/purchaseOrder/getPayAmount</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: close
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+Content-Length: 282
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:47 GMT
+Content-Type: text/html
+Content-Length: 587
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/purchaseOrder/getPayAmount&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:47&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">采购商创建订单</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624008082</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">11 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">10 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">2398</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/purchaseOrder/createOrder</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+Content-Length: 1100
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:47 GMT
+Content-Type: text/html
+Content-Length: 586
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/purchaseOrder/createOrder&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:47&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">支付公钥</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624008094</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">1 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">2124</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">Non HTTP response code: java.net.URISyntaxException</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Non HTTP response message: Illegal character in query at index 185: http://dev.yinongt.com/pay/getPwdPublicKey?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;size=10&amp;current=1&amp;uid=${uid}</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/pay/getPwdPublicKey?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;size=10&amp;current=1&amp;uid=${uid}</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">java.net.URISyntaxException: Illegal character in query at index 185: http://dev.yinongt.com/pay/getPwdPublicKey?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;size=10&amp;current=1&amp;uid=${uid}&#13;
+	at java.net.URI$Parser.fail(URI.java:2848)&#13;
+	at java.net.URI$Parser.checkChars(URI.java:3021)&#13;
+	at java.net.URI$Parser.parseHierarchical(URI.java:3111)&#13;
+	at java.net.URI$Parser.parse(URI.java:3053)&#13;
+	at java.net.URI.&lt;init&gt;(URI.java:588)&#13;
+	at java.net.URL.toURI(URL.java:963)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:535)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:67)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1282)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1271)&#13;
+	at org.apache.jmeter.threads.JMeterThread.doSampling(JMeterThread.java:627)&#13;
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:551)&#13;
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:490)&#13;
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)&#13;
+	at java.lang.Thread.run(Thread.java:748)&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">支付密码公钥加密</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624008096</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">5 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">0</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">500</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">org.apache.jorphan.util.JMeterException: Error invoking bsh method: eval	In file: inline evaluation of: ``import org.apache.commons.codec.binary.Base64; import java.io.ByteArrayOutputStr . . . '' Encountered ";" at line 17, column 20.&#13;
+</td></tr></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> </pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">订单支付</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624008102</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">5 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">5 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">730</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">502</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Bad Gateway</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/purchaseOrder/pay</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+did: 06b01d1074a55f15
+Accept-Language: zh-CN,zh;q=0.8
+Accept-Encoding: gzip
+Connection: keep-alive
+auth: ${token}
+Content-Length: 168
+Host: dev.yinongt.com
+User-Agent: Apache-HttpClient/4.5.10 (Java/1.8.0_241)
+</pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data">HTTP/1.1 502 Bad Gateway
+Server: Tengine
+Date: Tue, 31 Mar 2020 03:06:47 GMT
+Content-Type: text/html
+Content-Length: 578
+Connection: keep-alive
+</pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;&#13;
+&lt;html&gt;&#13;
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;&#13;
+&lt;body&gt;&#13;
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt;&#13;
+ Sorry for the inconvenience.&lt;br/&gt;&#13;
+Please report this message and include the following information to us.&lt;br/&gt;&#13;
+Thank you very much!&lt;/p&gt;&#13;
+&lt;table&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;URL:&lt;/td&gt;&#13;
+&lt;td&gt;http://dev.yinongt.com/purchaseOrder/pay&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Server:&lt;/td&gt;&#13;
+&lt;td&gt;epjs-dev-001&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;Date:&lt;/td&gt;&#13;
+&lt;td&gt;2020/03/31 11:06:47&lt;/td&gt;&#13;
+&lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;hr/&gt;Powered by Tengine&lt;hr&gt;&lt;center&gt;tengine&lt;/center&gt;&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">采购订单详情</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624008108</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1249</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">Non HTTP response code: java.net.URISyntaxException</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Non HTTP response message: Illegal character in query at index 162: http://dev.yinongt.com/purchaseOrder/?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;uid=${uid}</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/purchaseOrder/?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;uid=${uid}</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">java.net.URISyntaxException: Illegal character in query at index 162: http://dev.yinongt.com/purchaseOrder/?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;uid=${uid}&#13;
+	at java.net.URI$Parser.fail(URI.java:2848)&#13;
+	at java.net.URI$Parser.checkChars(URI.java:3021)&#13;
+	at java.net.URI$Parser.parseHierarchical(URI.java:3111)&#13;
+	at java.net.URI$Parser.parse(URI.java:3053)&#13;
+	at java.net.URI.&lt;init&gt;(URI.java:588)&#13;
+	at java.net.URL.toURI(URL.java:963)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:535)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:67)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1282)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1271)&#13;
+	at org.apache.jmeter.threads.JMeterThread.doSampling(JMeterThread.java:627)&#13;
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:551)&#13;
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:490)&#13;
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)&#13;
+	at java.lang.Thread.run(Thread.java:748)&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li><li onclick="return onclick_li(this);"><div class="failure">采购订单查询</div><div class="detail"><div class="group">Sampler</div><div class="zebra"><table><tr><td class="data key">Thread Name</td><td class="data delimiter">:</td><td class="data">采购商-登录 3-1</td></tr><tr><td class="data key">Timestamp</td><td class="data delimiter">:</td><td class="data"><span class="patch_timestamp">1585624008109</span></td></tr><tr><td class="data key">Time</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Latency</td><td class="data delimiter">:</td><td class="data">0 ms</td></tr><tr><td class="data key">Bytes</td><td class="data delimiter">:</td><td class="data">1278</td></tr><tr><td class="data key">Sample Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Error Count</td><td class="data delimiter">:</td><td class="data">1</td></tr><tr><td class="data key">Response Code</td><td class="data delimiter">:</td><td class="data">Non HTTP response code: java.net.URISyntaxException</td></tr><tr><td class="data key">Response Message</td><td class="data delimiter">:</td><td class="data">Non HTTP response message: Illegal character in query at index 161: http://dev.yinongt.com/purchaseOrder?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;uid=${uid}&amp;orderType=0&amp;size=10&amp;current=1</td></tr></table></div><div class="trail"></div><div class="group">Assertion</div><div class="zebra"><table><tbody class="failure"><tr><td colspan="3" class="data assertion">响应断言</td></tr><tr><td class="data key">Failure</td><td class="data delimiter">:</td><td class="data">true</td></tr><tr><td class="data key">Error</td><td class="data delimiter">:</td><td class="data">false</td></tr><tr><td class="data key">Failure Message</td><td class="data delimiter">:</td><td class="data">Test failed: text expected to contain /"code":0/</td></tr></tbody></table></div><div class="trail"></div><div class="group">Request</div><div class="zebra"><table><tr><td class="data key">Method/Url</td><td class="data delimiter">:</td><td class="data"><pre class="data"> http://dev.yinongt.com/purchaseOrder?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;uid=${uid}&amp;orderType=0&amp;size=10&amp;current=1</pre></td></tr><tr><td class="data key">Query String</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Cookies</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Request Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div><div class="group">Response</div><div class="zebra"><table><tr><td class="data key">Response Headers</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr><tr><td class="data key">Response Data</td><td class="data delimiter">:</td><td class="data"><pre class="data">java.net.URISyntaxException: Illegal character in query at index 161: http://dev.yinongt.com/purchaseOrder?versionCode=31&amp;versionName=1.5.0&amp;osType=1&amp;model=HRY-AL00Ta&amp;brand=HONOR&amp;osVerison=10&amp;androidId=06b01d1074a55f15&amp;utype=2&amp;uid=${uid}&amp;orderType=0&amp;size=10&amp;current=1&#13;
+	at java.net.URI$Parser.fail(URI.java:2848)&#13;
+	at java.net.URI$Parser.checkChars(URI.java:3021)&#13;
+	at java.net.URI$Parser.parseHierarchical(URI.java:3111)&#13;
+	at java.net.URI$Parser.parse(URI.java:3053)&#13;
+	at java.net.URI.&lt;init&gt;(URI.java:588)&#13;
+	at java.net.URL.toURI(URL.java:963)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:535)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:67)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1282)&#13;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1271)&#13;
+	at org.apache.jmeter.threads.JMeterThread.doSampling(JMeterThread.java:627)&#13;
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:551)&#13;
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:490)&#13;
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)&#13;
+	at java.lang.Thread.run(Thread.java:748)&#13;
+</pre></td></tr><tr><td class="data key">Response File</td><td class="data delimiter">:</td><td class="data"><pre class="data"></pre></td></tr></table></div><div class="trail"></div></div></li></ol></div><div id="right-panel"></div></body></html>
